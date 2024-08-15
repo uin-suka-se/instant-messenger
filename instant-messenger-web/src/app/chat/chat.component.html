@@ -1,0 +1,64 @@
+<!-- *************** List of Chat *************** -->
+<section
+  id="chat-list-page"
+  class="w-screen h-screen lg:max-w-lg flex flex-col overflow-hidden px-4"
+>
+  <span class="font-medium text-lg my-4"
+    >Selamat datang, {{ userData?.name?.split(" ")[0] }} 👋</span
+  >
+  <section
+    id="chat-list-header"
+    class="w-screen -mx-4 px-4 h-screen justify-between flex relative overflow-y-auto overflow-x-hidden flex-col gap-4"
+  >
+    <section
+      id="shadow"
+      class="w-screen -action-container -mx-4 px-4 pb-2 fixed bg-white z-20 h-fit"
+    >
+      <article
+        id="search-bar"
+        class="rounded-xl w-full flex gap-4 h-fit border items-center justify-start"
+      >
+        <label
+          for="search"
+          class="material-symbols-outlined ml-4 text-lg my-1 text-gray-400"
+          >search</label
+        >
+        <input
+          type="text"
+          id="search"
+          name="search"
+          class="w-full h-full rounded-xl placeholder:text-sm my-1 focus-visible:outline-none"
+          placeholder="Cari"
+        />
+      </article>
+    </section>
+
+    <section class="flex flex-col gap-2 h-fit mb-8 mt-20">
+      <ng-container *ngFor="let chat of chatList; let i = index">
+        <app-chat-card
+          (openChat)="selectChat($event)"
+          [id]="chat?.chatId"
+          [name]="chat?.name"
+          [type]="chat?.chatType"
+          [sentAt]="chat?.lastMessageTime"
+          [nim]="userData?.nim"
+          [lastMessage]="chat?.lastMessage"
+          [chatDetail]="listOfChatDetail"
+        ></app-chat-card>
+      </ng-container>
+    </section>
+  </section>
+</section>
+
+<!-- *************** List of Chat *************** -->
+<section
+  class="size-fit top-0 left-0 ease-linear duration-200 translate-x-[100vw] fixed z-50"
+  #appChatDetail
+>
+  <app-chat-detail
+    (sendMessage)="sendMessage($event)"
+    (closeChat)="closeChat()"
+    [detail]="selectedChatDetail"
+    [nim]="userData?.nim"
+  ></app-chat-detail>
+</section>

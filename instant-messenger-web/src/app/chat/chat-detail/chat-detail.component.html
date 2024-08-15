@@ -1,0 +1,93 @@
+<article
+  class="h-screen w-screen z-50 absolute flex flex-col overflow-scroll bg-gray-400 object-cover"
+>
+  <section
+    id="header"
+    class="grid z-50 grid-cols-12 gap-4 w-full items-center sticky bg-white top-0 px-4 py-2"
+  >
+    <span class="material-symbols-outlined col-span-1" (click)="close()">
+      arrow_back
+    </span>
+    <figure class="col-span-2 justify-end flex">
+      <img
+        [src]="
+          chatDetail?.chatType === 'private'
+            ? 'https://t3.ftcdn.net/jpg/04/60/91/88/360_F_460918802_XVCymFr7MoziFpnInbTDvrlblYhvAOi2.jpg'
+            : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJwwEPAf9a4QbZNK0QrBmwhMmBjm69iXM27mN8-RRwP7Z-sJpv1QfgE_c&s=10'
+        "
+        alt="blank_profile"
+        class="size-10 my-2 rounded-full object-cover"
+      />
+    </figure>
+    <span class="col-span-9 text-lg">{{ chatDetail?.chatName }}</span>
+  </section>
+
+  <section class="mt-4 px-4 w-full flex flex-col gap-4" #messageContainer>
+    <ng-container *ngFor="let message of chatDetail?.messages">
+      <ng-container
+        *ngIf="
+          message?.senderId === senderId;
+          then myMessage;
+          else otherMessage
+        "
+      ></ng-container>
+      <ng-template #myMessage>
+        <section class="w-full flex justify-end">
+          <article
+            class="box-content flex justify-between p-2 rounded-xl rounded-br-sm bg-blue-300 w-fit max-w-[75%] gap-1"
+          >
+            <span class="w-fit max-w-full break-words whitespace-normal">
+              {{ message?.content }}
+            </span>
+            <span
+              class="min-w-20 w-fit gap-1 text-xs flex flex-nowrap items-end justify-end"
+            >
+              {{ formatTime(message?.sentAt) }}
+              <span
+                class="material-symbols-outlined text-base translate-y-1 z-0"
+                >done_all</span
+              >
+            </span>
+          </article>
+        </section>
+      </ng-template>
+
+      <ng-template #otherMessage>
+        <section class="w-full flex justify-start">
+          <article
+            class="box-content flex p-2 rounded-xl rounded-bl-sm bg-white w-fit max-w-[75%] gap-1"
+          >
+            <span class="max-w-full w-fit break-words whitespace-normal">
+              {{ message?.content }}
+            </span>
+            <span class="min-w-20 w-fit text-xs flex flex-nowrap items-end justify-end">
+              {{ formatTime(message?.sentAt) }}
+            </span>
+          </article>
+        </section>
+      </ng-template>
+    </ng-container>
+    <span class="h-16 opacity-0"></span>
+  </section>
+  <form
+    class="bg-gray-400 rounded-lg p-4 grid grid-cols-12 items-center gap-4 fixed bottom-0 w-screen px-4 pt-1 left-0"
+    (submit)="$event.preventDefault(); send()"
+  >
+    <textarea
+      #messageInput
+      class="border bg-white rounded-xl w-full resize-none p-2 px-4 mb-[2px] max-h-[200px] min-h-8 text-default focus-visible:outline-none col-span-10"
+      rows="1"
+      name="message"
+      (input)="onTextAreaInput($event)"
+      [(ngModel)]="messageFormControl"
+      (keypress)="onKeyPress($event)"
+      [placeholder]="'Ketik pesan' + '...'"
+    ></textarea>
+    <button
+      type="submit"
+      class="rounded-full size-10 flex items-center justify-center bg-blue-500 col-span-2"
+    >
+    <span class="material-symbols-outlined text-white translate-x-[1px]">send</span>
+    </button>
+  </form>
+</article>

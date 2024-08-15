@@ -1,0 +1,59 @@
+<section class="grid grid-cols-5 w-full justify-between h-fit items-center gap-4">
+  <img
+    [src]="chatType === 'private' ? 'https://t3.ftcdn.net/jpg/04/60/91/88/360_F_460918802_XVCymFr7MoziFpnInbTDvrlblYhvAOi2.jpg' : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJwwEPAf9a4QbZNK0QrBmwhMmBjm69iXM27mN8-RRwP7Z-sJpv1QfgE_c&s=10'"
+    alt="blank_profile"
+    class="size-14 my-2 rounded-full col-span-1 object-cover"
+  />
+  <section
+    id="chat-detail"
+    class="flex gap-1 h-3/4 col-span-4 flex-col justify-between items-start"
+    (click)="open()"
+  >
+    <section
+      id="chat-detail-header"
+      class="grid grid-cols-12 justify-between w-full items-center"
+    >
+      <strong class="text-base truncate col-span-8"> {{ chatName }} </strong>
+      <span class="text-xs text-gray-500 text-end col-span-4">
+        {{ chatDate }}
+      </span>
+    </section>
+    <ng-container
+      *ngIf="chatType === 'private'; then private; else group"
+    ></ng-container>
+    <ng-template #private>
+      <section class="flex gap-2 items-center opacity-50">
+        <span
+          *ngIf="messages?.[messages?.length - 1]?.senderId === senderId"
+          class="material-symbols-outlined"
+          >done_all</span
+        >
+        <span
+          class="text-base"
+          >{{ lastMessage ? lastMessage : messages?.[messages?.length - 1]?.content }}</span
+        >
+      </section>
+    </ng-template>
+
+    <ng-template #group>
+      <section class="flex gap-2 items-center opacity-50 truncate w-full">
+        <span
+          *ngIf="messages?.[messages?.length - 1]?.senderId === senderId"
+          class="material-symbols-outlined"
+          >check</span
+        >
+        <span
+          *ngIf="messages?.[messages?.length - 1]?.senderId !== senderId"
+          class="font-semibold"
+        >
+          ~ {{ messages?.[messages?.length - 1]?.senderName?.split(' ')?.[0] }}:
+        </span>
+        <span
+          class="text-base truncate w-full"
+          [ngClass]="messages?.[messages?.length - 1]?.senderId === senderId ? 'before:content-you before:font-semibold' : ''"
+          >{{ lastMessage ? lastMessage : messages?.[messages?.length - 1]?.content }}</span
+        >
+      </section>
+    </ng-template>
+  </section>
+</section>
