@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer-array name="user_images">
+        <item>@drawable/james_hetfield</item>
+        <item>@drawable/daniela_villarreal</item>
+        <item>@drawable/daniela_villarreal</item>
+        <item>@drawable/alexi_laiho</item>
+        <item>@drawable/dave_mustaine</item>
+        <item>@drawable/dimebag_darrell</item>
+        <item>@drawable/eddie_van_halen</item>
+        <item>@drawable/jim_root</item>
+        <item>@drawable/kirk_hammett</item>
+        <item>@drawable/marty_friedman</item>
+        <item>@drawable/mick_thomson</item>
+    </integer-array>
+</resources>

@@ -1,0 +1,56 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.Instantmessengermobile" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="android:statusBarColor">@color/blue</item>
+    </style>
+
+    <style name="Theme.Instantmessengermobile" parent="Base.Theme.Instantmessengermobile" />
+
+    <style name="ShapeAppearanceOverlay.App.Image.Circle" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
+
+    <style name="TextInputLayout">
+        <item name="android:fontFamily">@font/montserrat</item>
+        <item name="hintTextColor">@color/darker_grey</item>
+        <item name="startIconTint">@color/primary_color</item>
+        <item name="boxStrokeWidth">0dp</item>
+        <item name="boxStrokeWidthFocused">0dp</item>
+    </style>
+
+    <style name="TextInputEditText"
+        parent="Widget.MaterialComponents.TextInputLayout.FilledBox">
+        <item name="android:background">@drawable/bg_text_field</item>
+        <item name="android:fontFamily">@font/montserrat</item>
+    </style>
+
+    <style name="ShapeAppearanceOverlay.App.Image.Rounded" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">25%</item>
+    </style>
+
+    <!-- Define ShapeAppearance with only top corners rounded -->
+    <style name="ShapeAppearanceOverlay.App.Image.RoundedTop" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopLeft">25%</item>
+        <item name="cornerSizeTopRight">25%</item>
+        <item name="cornerSizeBottomLeft">0dp</item>
+        <item name="cornerSizeBottomRight">0dp</item>
+    </style>
+
+    <style name="App.TextInputEditText" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="Theme.MyNavigationDrawer.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.MyNavigationDrawer.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="MyCustomButtonStyle" parent="@style/Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="colorControlHighlight">@color/blue</item>
+    </style>
+
+</resources>
